@@ -15,16 +15,29 @@ export default function Shopping() {
 
 		getData()
 	}, [])
-  console.log(shopList)
+
+  function validateInput(e) {
+    console.log(e);
+  }
+
+  function handleIncrease() {
+
+  }
+
+  function handleDecrease() {
+
+  }
+
   return (
-		<>
+		<main className="shopping-content">
       {shopList.map((item) => {
-        return (
+        return ( item.id < 13 &&
           <Card itemName={item.title} imgSrc={item.image} itemId={item.id}
-          key={item.id} itemDesc={item.description} itemPrice={item.price}
-            itemRating={item.rating.rate} />
+          key={item.id} itemPrice={item.price}
+            itemRating={item.rating.rate} handleInput={validateInput}
+            handleDecrease={handleDecrease} handleIncrease={handleIncrease} />
         )
       })}
-		</>
+		</main>
   )
 }

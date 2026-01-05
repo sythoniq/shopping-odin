@@ -1,0 +1,44 @@
+.shopping-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5em;
+  padding: 1.25em;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.5);
+  padding: 1em;
+  border-radius: 12px;
+  border: 1px solid black;
+}
+
+.top-part {
+  display: grid;
+  gap: 1.25em;
+}
+
+.top-part > h4 {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: .15em;
+  text-align: center;
+}
+
+.img-cont {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-cont > img {
+  max-width: 200px;
+  max-height: 200px;
+}

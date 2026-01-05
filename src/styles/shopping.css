@@ -26,6 +26,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   text-align: center;
+  font-size: 1.25em;
 }
 
 .img-cont {
@@ -38,4 +39,41 @@
 .img-cont > img {
   max-width: 200px;
   max-height: 200px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap:.5em;
+  justify-content: center;
+  align-items: center;
+}
+
+.details > .card-details {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.details > .item-quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set {
+  display: flex;
+  font-size: 1.25em;
+  max-width: 50%;
+}
+
+.set > input {
+  max-width: 75%;
+}
+
+.item-quantity > button {
+  font-weight: 900;
+  font-size :1.1em;
 }

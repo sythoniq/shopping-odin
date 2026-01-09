@@ -1,7 +1,8 @@
-import {useState,useEffect} from 'react'
+import {addItemToCart} from './Cart.jsx';
 import Card from '../Card.jsx'
+import {useState, useEffect} from 'react'
 
-export default function Shopping() {
+export default function Shopping(props) {
 	const [shopList, setShopList] = useState([])
 	// Will give us a title, an id, a price, a description and an image
 	
@@ -17,7 +18,14 @@ export default function Shopping() {
 	}, [])
 
   function validateInput(e) {
-    console.log(e);
+    const tgtEle = document.getElementById(e.id);
+    const tgtItem = shopList[e.id];
+    
+    const tgtInput = tgtEle.querySelector("input");
+
+    if (tgtInput.value <= 0) return;
+  
+    addItemToCart(tgtItem, tgtInput.value);
   }
 
   function handleIncrease(e) { 
@@ -25,6 +33,8 @@ export default function Shopping() {
     if (tgt.value >= 0) {
       tgt.value++
     }
+
+    return tgt.value;
   }
 
   function handleDecrease(e) {
@@ -32,6 +42,8 @@ export default function Shopping() {
     if (tgt.value != 0) {
       tgt.value--
     }
+
+    return tgt.value;
   }
 
   return (

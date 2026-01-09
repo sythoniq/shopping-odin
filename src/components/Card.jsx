@@ -14,9 +14,10 @@ export default function Card(props) {
         </div> 
         <div className="item-quantity">
           <div className="set">
-            <button onClick={props.handleDecrease()}>-</button>
+            <button onClick={(e) => props.handleDecrease(e.target.closest("main > div"))}>-</button>
             <input type="text" placeholder="Enter item quantity" id={props.itemId} onChange={(e) => props.handleInput(e.target.value)} />
-            <button onClick={props.handleIncrease()}>+</button>
+            <button onClick={(e) =>
+              props.handleIncrease(e.target.closest("main > div"))}>+</button>
           </div>
           <button id={props.itemId} onClick={(e) => {e.preventDefault(); props.handleInput(e.target)}}>Add to cart</button>
         </div>

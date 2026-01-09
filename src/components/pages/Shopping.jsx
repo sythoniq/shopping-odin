@@ -20,12 +20,18 @@ export default function Shopping() {
     console.log(e);
   }
 
-  function handleIncrease() {
-
+  function handleIncrease(e) { 
+    const tgt = document.getElementById(e.id).querySelector("input");
+    if (tgt.value >= 0) {
+      tgt.value++
+    }
   }
 
-  function handleDecrease() {
-
+  function handleDecrease(e) {
+    const tgt = document.getElementById(e.id).querySelector("input");
+    if (tgt.value != 0) {
+      tgt.value--
+    }
   }
 
   return (

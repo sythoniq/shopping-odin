@@ -1,10 +1,13 @@
-import {addItemToCart} from './Cart.jsx';
-import Card from '../Card.jsx'
 import {useState, useEffect} from 'react'
+import {useOutletContext} from 'react-router'
+
+import Card from '../Card.jsx'
 
 export default function Shopping(props) {
-	const [shopList, setShopList] = useState([])
-	// Will give us a title, an id, a price, a description and an image
+  const {list, box} = useOutletContext();
+
+  const [shopList, setShopList] = list;
+  const [cart, setCart] = box;
 	
 	useEffect(() => {
 			async function getData() {
@@ -25,7 +28,7 @@ export default function Shopping(props) {
 
     if (tgtInput.value <= 0) return;
   
-    addItemToCart(tgtItem, tgtInput.value);
+    setCart([...cart, [tgtItem, tgtInput.value]]);
   }
 
   function handleIncrease(e) { 
@@ -46,16 +49,22 @@ export default function Shopping(props) {
     return tgt.value;
   }
 
-  return (
-		<main className="shopping-content">
-      {shopList.map((item) => {
-        return ( item.id < 13 &&
-          <Card itemName={item.title} imgSrc={item.image} itemId={item.id}
-          key={item.id} itemPrice={item.price}
-            itemRating={item.rating.rate} handleInput={validateInput}
-            handleDecrease={handleDecrease} handleIncrease={handleIncrease} />
-        )
-      })}
-		</main>
-  )
+  if (shopList) {
+    return (
+      <main className="shopping-content">
+        {shopList.map((item) => {
+          return ( item.id < 13 &&
+            <Card itemName={item.title} imgSrc={item.image} itemId={item.id}
+              key={item.id} itemPrice={item.price}
+              itemRating={item.rating.rate} handleInput={validateInput}
+              handleDecrease={handleDecrease} handleIncrease={handleIncrease} />
+          )
+        })}
+      </main>
+    )
+  } else {
+    return (
+      <p>We couldnt fetch O_o</p>
+    )
+  }
 }

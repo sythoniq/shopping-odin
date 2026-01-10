@@ -1,7 +1,14 @@
 import {Outlet, Link} from 'react-router-dom';
+import {useState} from 'react'
 export default function Root() {
+  const [shopList, setShopList] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  const [count, setCount] = useState(0);
+
   return(
     <>
+      <button onClick={() => setCount((c) => c + 1 )}>Fuck You React</button>
       <header className="page-heading">
         <Link to={'home'}>
           <div className="name-and-logo">
@@ -23,7 +30,10 @@ export default function Root() {
           </ul>
         </nav>
       </header>
-      <Outlet /> 
+      <Outlet context={{
+        list: [shopList, setShopList],
+        box: [cart, setCart]
+      }}/> 
     </>
   )
 }

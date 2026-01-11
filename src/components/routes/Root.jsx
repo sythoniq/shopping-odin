@@ -11,7 +11,7 @@ export default function Root() {
         <Link to={'home'}>
           <div className="name-and-logo">
             <h3>Shit Shop</h3>
-          </div>
+         </div>
         </Link>
         <nav className="heading-nav">
           <ul className="nav-lists">

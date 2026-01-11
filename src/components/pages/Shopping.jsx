@@ -6,6 +6,7 @@ import {ItemCard as Card} from '../Card.jsx'
 export default function Shopping(props) {
   const {list, box} = useOutletContext();
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const [shopList, setShopList] = list;
   const [cart, setCart] = box;
@@ -22,10 +23,12 @@ export default function Shopping(props) {
         const data = await res.json();
         setShopList(data);
         setError(null);
+        setLoading(false);
       } catch(err) {
         console.error(err)
         setError(err.message)
         setShopList(null);
+        setLoadign(false);
       }
     }
 
@@ -68,7 +71,13 @@ export default function Shopping(props) {
     return tgt.value;
   }
 
-  if (shopList) {
+  if (loading == true) {
+    return (
+      <div className="loading-page">
+        <div className="loader"></div>
+      </div>
+    )
+  } else if (loading == false) {
     return (
       <main className="shopping-content">
         {shopList.map((item) => {

@@ -1,5 +1,6 @@
 import {useOutletContext} from 'react-router';
 import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 import {CartCard as Card} from '../Card.jsx'
 
@@ -55,7 +56,10 @@ export default function Cart() {
     ) 
   } else {
     return (
-      <p>Cart is emtpy :)</p>
+      <div className="empty-cart">
+        <h3>Your Cart Is Empty!</h3>
+        <p>Shop for some items <Link to={'../shopping'}>here!</Link></p>
+      </div>
     )
   }
 };

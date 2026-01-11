@@ -1,4 +1,4 @@
-.fetch-error {
+.fetch-error, .empty-cart {
   display: flex;
   flex-direction: column;
   font-family: monospace;
@@ -8,11 +8,13 @@
   gap:  1.25em;
 }
 
-.fetch-error > h3 {
+.fetch-error > h3, .empty-cart > h3 {
   text-decoration: underline;
   font-size: 2em;
 }
 
-.fetch-error > p{
+.fetch-error > p, .empty-cart > p {
   font-size: 1.5em;
+
 }
+

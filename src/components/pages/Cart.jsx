@@ -25,22 +25,37 @@ export default function Cart() {
   }
 
   function handleButton(e) {
-    console.log(e)
+    const tgt = e.closest(".cart-card").id;
+    const tgtItem = cart.indexOf(cart.find((item) => item[0].id == tgt));
+
+    if (e.innerText == "-") {
+      if (cart[tgtItem][1] <= 1) return;
+      cart[tgtItem][1] = Number(cart[tgtItem][1]) - 1;
+    } else if (e.innerText == "+") {
+      cart[tgtItem][1] = Number(cart[tgtItem][1]) + 1;
+    }
+    setCart([...cart]);
   }
   
-  return (
-    <main className="cart-content">
-      {cart.map(item => {
-        const detail = item[0];
-        const quantity = item[1];
-        return (
-          <Card key={detail.id} itemId={detail.id} imgSrc={detail.image}
-            imgAlt={detail.title} itemName={detail.title}
-            handleDecrease={handleButton} totalPrice={"Total Price: " +
-              Number(detail.price) * Number(quantity)} handleIncrease={handleButton}
-            handleRemove={handleItemRemove} itemQuantity={quantity} />
-        )
-      })}
-    </main>
-  ) 
+  if (cart.length > 0) {
+    return (
+      <main className="cart-content">
+        {cart.map(item => {
+          const detail = item[0];
+          const quantity = item[1];
+          return (
+            <Card key={detail.id} itemId={detail.id} imgSrc={detail.image}
+              imgAlt={detail.title} itemName={detail.title}
+              handleDecrease={handleButton} totalPrice={"Total Price: $" +
+                Number(detail.price) * Number(quantity)} handleIncrease={handleButton}
+              handleRemove={handleItemRemove} itemQuantity={quantity} />
+          )
+        })}
+      </main>
+    ) 
+  } else {
+    return (
+      <p>Cart is emtpy :)</p>
+    )
+  }
 };

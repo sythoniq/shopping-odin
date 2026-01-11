@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useOutletContext} from 'react-router'
 
-import Card from '../Card.jsx'
+import {ItemCard as Card} from '../Card.jsx'
 
 export default function Shopping(props) {
   const {list, box} = useOutletContext();
@@ -20,9 +20,11 @@ export default function Shopping(props) {
 		getData()
 	}, [])
 
+  // TODO! Fix edge case of multiple Entry !!!
+
   function validateInput(e) {
     const tgtEle = document.getElementById(e.id);
-    const tgtItem = shopList[e.id];
+    const tgtItem = shopList[e.id - 1];
     
     const tgtInput = tgtEle.querySelector("input");
 

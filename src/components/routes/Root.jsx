@@ -4,11 +4,9 @@ export default function Root() {
   const [shopList, setShopList] = useState([]);
   const [cart, setCart] = useState([]);
 
-  const [count, setCount] = useState(0);
 
   return(
     <>
-      <button onClick={() => setCount((c) => c + 1 )}>Fuck You React</button>
       <header className="page-heading">
         <Link to={'home'}>
           <div className="name-and-logo">

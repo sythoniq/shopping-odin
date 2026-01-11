@@ -1,0 +1,18 @@
+.fetch-error {
+  display: flex;
+  flex-direction: column;
+  font-family: monospace;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25em;
+  gap:  1.25em;
+}
+
+.fetch-error > h3 {
+  text-decoration: underline;
+  font-size: 2em;
+}
+
+.fetch-error > p{
+  font-size: 1.5em;
+}

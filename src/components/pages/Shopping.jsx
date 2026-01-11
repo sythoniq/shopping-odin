@@ -5,22 +5,33 @@ import {ItemCard as Card} from '../Card.jsx'
 
 export default function Shopping(props) {
   const {list, box} = useOutletContext();
+  const [error, setError] = useState(null);
 
   const [shopList, setShopList] = list;
   const [cart, setCart] = box;
 	
-	useEffect(() => {
-			async function getData() {
-				const res = await fetch('https://fakestoreapi.com/products')
-				const data = await res.json()
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await fetch('https://fakestoreapi.com/products')
 
-				setShopList(data)
-			}
+        if (!res.ok) {
+          throw new Error(`HTTP Error: Status ${response.status}`);
+        }
+
+        const data = await res.json();
+        setShopList(data);
+        setError(null);
+      } catch(err) {
+        console.error(err)
+        setError(err.message)
+        setShopList(null);
+      }
+    }
 
 		getData()
 	}, [])
 
-  // TODO! Fix edge case of multiple Entry !!!
 
   function validateInput(e) {
     const tgtEle = document.getElementById(e.id);
@@ -37,8 +48,6 @@ export default function Shopping(props) {
     } else {
       setCart([...cart, [tgtItem, tgtInput.value]]);
     }
-
-    console.log(cart);
   }
 
   function handleIncrease(e) { 
@@ -63,7 +72,7 @@ export default function Shopping(props) {
     return (
       <main className="shopping-content">
         {shopList.map((item) => {
-          return ( item.id < 13 &&
+          return (
             <Card itemName={item.title} imgSrc={item.image} itemId={item.id}
               key={item.id} itemPrice={item.price}
               itemRating={item.rating.rate} handleInput={validateInput}
@@ -74,7 +83,10 @@ export default function Shopping(props) {
     )
   } else {
     return (
-      <p>We couldnt fetch O_o</p>
+      <div className="fetch-error">
+        <h3>Failed To Fetch Data</h3>
+        <p>There seems to be an issue with our network, please try again later!</p>
+      </div>
     )
   }
 }

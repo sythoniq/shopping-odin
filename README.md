@@ -35,3 +35,5 @@
  >> - Maybe redo the styling for it to be much more user friendly by considering
  >>   color contrast and responsiveness or different devices as well as font
  >>   size if need be.
+    
+ >> - Forgot to add a cart item counter, will implement really soon.

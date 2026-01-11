@@ -9,7 +9,19 @@ export default function Cart() {
   const [cart, setCart] = box;
 
   function handleItemRemove(e) {
-    console.log(e);
+    let tgt;
+    let tgtItem;
+    if (e.tagName == "P") {
+      tgt = e.parentNode;
+    } else if (e.tagName == "svg") {
+      tgt = e.parentNode.parentNode;
+    } else if (e.tagName == "path") {
+      tgt = e.parentNode.parentNode.parentNode;
+    }
+
+    tgtItem = cart.indexOf(cart.find((item) => item[0].id == tgt.closest(".cart-card").id));
+    cart.splice(tgtItem, 1);
+    setCart([...cart]);
   }
 
   function handleButton(e) {

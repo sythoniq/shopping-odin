@@ -30,7 +30,15 @@ export default function Shopping(props) {
 
     if (tgtInput.value <= 0) return;
   
-    setCart([...cart, [tgtItem, tgtInput.value]]);
+    const res = cart.find((item) => item[0].title == tgtItem.title); 
+    
+    if (res) {
+      res[1] = tgtInput.value;
+    } else {
+      setCart([...cart, [tgtItem, tgtInput.value]]);
+    }
+
+    console.log(cart);
   }
 
   function handleIncrease(e) { 

@@ -26,7 +26,7 @@ export default function Cart() {
             imgAlt={detail.title} itemName={detail.title}
             handleDecrease={handleButton} totalPrice={"Total Price: " +
               Number(detail.price) * Number(quantity)} handleIncrease={handleButton}
-            handleRemove={handleItemRemove} />
+            handleRemove={handleItemRemove} itemQuantity={quantity} />
         )
       })}
     </main>

@@ -36,4 +36,3 @@
  >>   color contrast and responsiveness or different devices as well as font
  >>   size if need be.
     
- >> - Forgot to add a cart item counter, will implement really soon.

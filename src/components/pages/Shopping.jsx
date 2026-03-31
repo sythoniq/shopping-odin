@@ -28,7 +28,7 @@ export default function Shopping(props) {
         console.error(err)
         setError(err.message)
         setShopList(null);
-        setLoadign(false);
+        setLoading(false);
       }
     }
 
